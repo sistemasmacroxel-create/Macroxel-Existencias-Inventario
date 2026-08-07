@@ -580,7 +580,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function getCfg(){return loadCfg();}
   function restUrl(path,bust=false){const c=getCfg(),clean=String(path||'').startsWith('/')?String(path):'/'+String(path||'');const u=new URL(c.db+clean+(clean.endsWith('.json')?'':'.json'));if(bust)u.searchParams.set('ts',String(Date.now()));return u.toString();}
   async function fetchJson(path){const p=String(path||'');if(!window.__mxViewerLicensed&&!/^\/viewer_license(?:s|_history)(?:\/|$)/.test(p))throw new Error('Aplicación pendiente de activación');const r=await fetch(restUrl(path,true),{cache:'no-store'});if(!r.ok)throw new Error('Firebase HTTP '+r.status);return r.json();}
-  async function putJson(path,data){const p=String(path||'');if(!window.__mxViewerLicensed&&!/^\/viewer_license(?:s|_history)(?:\/|$)/.test(p))throw new Error('Aplicación pendiente de activación');const r=await fetch(restUrl(path,false),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw new Error('Firebase HTTP '+r.status);return true;}
+  
+async function mxExBumpActivation(path){if(!String(path||'').includes('/viewer_licenses/'))return;try{const c=getCfg(),v=Math.max(Date.now(),Number(localStorage.getItem('mx_ex_act_ver')||0)+1);localStorage.setItem('mx_ex_act_ver',String(v));await fetch(restUrl(`/sync_versions/${encodeURIComponent(c.branch)}/activations`,false),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({v,updatedAt:new Date().toISOString()})})}catch(_e){}}
+
+  async function putJson(path,data){const p=String(path||'');if(!window.__mxViewerLicensed&&!/^\/viewer_license(?:s|_history)(?:\/|$)/.test(p))throw new Error('Aplicación pendiente de activación');const r=await fetch(restUrl(path,false),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw new Error('Firebase HTTP '+r.status);mxExBumpActivation(path);return true;}
   window.mxViewerGetCfg=getCfg;window.mxViewerSaveCfg=(next,notify=false)=>{const previous=getCfg(),clean=saveCfg(next);if(notify)window.dispatchEvent(new CustomEvent('mx-viewer-config-changed',{detail:{previous,next:clean}}));return clean;};window.mxViewerFetchJson=fetchJson;window.mxViewerPutJson=putJson;window.mxViewerRestUrl=restUrl;
   function setFirebaseStatus(ok,msg){const el=$('firebaseStatus'),tx=$('firebaseStatusText');if(!el)return;el.classList.remove('ok','bad');if(ok===true)el.classList.add('ok');if(ok===false)el.classList.add('bad');const label=ok===true?'Conectado':ok===false?'Sin conexión':'Comprobando conexión';el.title=label;el.setAttribute('aria-label',label);if(tx)tx.textContent=label;}
   function fillConfig(){const c=getCfg();$('viewerDb').value=c.db;$('viewerBranch').value=c.branch;}
@@ -794,7 +797,7 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
   function cfg(){try{if(typeof window.mxViewerGetCfg==='function')return window.mxViewerGetCfg();}catch(_e){}let saved=null;try{saved=JSON.parse(localStorage.getItem(CFG_KEY)||'null');}catch(_e){}return{db:String(saved?.db||'').replace(/\.json\/?$/i,'').replace(/\/+$/,''),branch:String(saved?.branch||'HGAM').trim().toUpperCase()||'HGAM'};}
   function saveCfg(c,notify=false){const previous=cfg(),clean={db:String(c?.db||previous.db).trim().replace(/\.json\/?$/i,'').replace(/\/+$/,''),branch:String(c?.branch||previous.branch||'HGAM').trim().toUpperCase()||'HGAM'};try{localStorage.setItem(CFG_KEY,JSON.stringify(clean));if($('viewerDb'))$('viewerDb').value=clean.db;if($('viewerBranch'))$('viewerBranch').value=clean.branch;}catch(_e){}if(notify)window.dispatchEvent(new CustomEvent('mx-viewer-config-changed',{detail:{previous,next:clean}}));return clean;}
   function url(path,bust=false){const c=cfg(),p=String(path||'').startsWith('/')?String(path):'/'+String(path||'');if(!c.db)throw new Error('Captura la URL de Firebase.');const u=new URL(c.db+p+(p.endsWith('.json')?'':'.json'));if(bust)u.searchParams.set('ts',Date.now());return u.toString();}
-  async function request(path,method='GET',body){const r=await fetch(url(path,method==='GET'),{method,cache:'no-store',headers:body?{'Content-Type':'application/json'}:undefined,body:body?JSON.stringify(body):undefined});if(!r.ok){let t='';try{t=await r.text();}catch(_e){}throw new Error('Firebase HTTP '+r.status+(t?' - '+t.slice(0,100):''));}if(method==='DELETE')return null;try{return await r.json();}catch(_e){return null;}}
+  async function request(path,method='GET',body){const r=await fetch(url(path,method==='GET'),{method,cache:'no-store',headers:body?{'Content-Type':'application/json'}:undefined,body:body?JSON.stringify(body):undefined});if(!r.ok){let t='';try{t=await r.text();}catch(_e){}throw new Error('Firebase HTTP '+r.status+(t?' - '+t.slice(0,100):''));}if(method!=='GET')mxExBumpActivation(path);if(method==='DELETE')return null;try{return await r.json();}catch(_e){return null;}}
   function effectiveState(rec){return window.mxUnifiedActivation.appState(rec,APP_CODE);}
   function fmt(v){const d=new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleString('es-MX');}
   function readCachedLicense(){try{const raw=localStorage.getItem(LOCAL_LICENSE_KEY);return raw?JSON.parse(raw):null;}catch(_e){return null;}}
@@ -899,7 +902,7 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
   }
   function scheduleProbe(){
     clearInterval(connectionTimer);
-    connectionTimer=setInterval(probeConnection,15000);
+    connectionTimer=setInterval(probeConnection,120000);
   }
   function init(){
     const p=document.getElementById('patientsView'),inv=document.getElementById('inventoryView'),tabs=document.querySelector('.viewer-tabs'),reload=document.getElementById('btnReload'),invReload=document.getElementById('btnInventoryReload'),q=document.getElementById('inventoryQ'),clear=document.getElementById('btnInventoryClear');
@@ -1146,7 +1149,7 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(check,500),{once:true});
   else setTimeout(check,500);
-  setInterval(check,15000);
+  setInterval(check,300000);
 })();
 </script>
 
@@ -1207,7 +1210,7 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
 <script id="mx-ecosystem-viewer-config-v106">
 (function(){
  'use strict';if(window.__mxEcosystemViewerConfigV106)return;window.__mxEcosystemViewerConfigV106=true;
- const DISCOVERY_DB='https://ecosistema-macroxel-default-rtdb.firebaseio.com',LEGACY='HGAM',POLL=10000;let checking=false,last='';
+ const DISCOVERY_DB='https://ecosistema-macroxel-default-rtdb.firebaseio.com',LEGACY='HGAM',POLL=300000;let checking=false,last='';
  const txt=v=>String(v==null?'':v).trim(),cleanDb=v=>txt(v).replace(/\.json\/?$/i,'').replace(/\/+$/,'');
  function cleanId(v){return(txt(v)||LEGACY).toUpperCase().replace(/[.#$\[\]\/]/g,'_')||LEGACY;}
  function cfg(){try{const c=window.mxViewerGetCfg?.();if(c)return{db:cleanDb(c.db)||DISCOVERY_DB,branch:cleanId(c.branch)}}catch(_e){}return{db:DISCOVERY_DB,branch:LEGACY};}
