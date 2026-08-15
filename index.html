@@ -548,6 +548,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 </div>
 </div>
 </section>
+<div id="mxInventoryDetailGate" class="mx-inventory-detail-overlay mx-hidden" role="dialog" aria-modal="true" aria-labelledby="mxInventoryDetailTitle">
+<div class="mx-inventory-detail-card">
+<div class="mx-inventory-detail-head">
+<div><span class="mx-inventory-detail-eyebrow">DETALLE DEL PRODUCTO</span><h3 id="mxInventoryDetailTitle">Producto disponible</h3></div>
+<button id="mxInventoryDetailClose" class="mx-inventory-detail-close" type="button" aria-label="Cerrar detalle">×</button>
+</div>
+<div class="mx-inventory-detail-key" id="mxInventoryDetailKey">—</div>
+<div class="mx-inventory-detail-tags" id="mxInventoryDetailTags"></div>
+<div class="mx-inventory-detail-section">
+<span>DESCRIPCIÓN COMPLETA</span>
+<p id="mxInventoryDetailDescription">—</p>
+</div>
+<div class="mx-inventory-detail-footer"><span class="mx-inventory-detail-available">✓ Disponible</span><small>Toca la X para cerrar</small></div>
+</div>
+</div>
 <section id="expiryView" class="mx-hidden" aria-labelledby="tabExpiry">
 <div class="card expiry-card">
 <div class="expiry-heading">
@@ -695,17 +710,39 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
     if(lastSpace>Math.floor(max*.72))cut=cut.slice(0,lastSpace);
     return cut+'…';
   }
+  function inventoryPresentationTags(value){
+    const n=String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/\s+/g,' ');
+    const tags=[];
+    const add=(label,cls)=>{if(!tags.some(x=>x.label===label))tags.push({label,cls})};
+    if(n.includes('TABLETA'))add('TABLETA','tableta');
+    if(n.includes('COMPRIMIDO'))add('COMPRIMIDO','comprimido');
+    if(n.includes('FRASCO'))add('FRASCO','frasco');
+    if(n.includes('AMPOLLETA')||n.includes('AMPULA'))add('ÁMPULA / AMPOLLETA','ampula');
+    if(n.includes('INYECTABLE'))add('INYECTABLE','inyectable');
+    return tags;
+  }
+  function closeInventoryDetail(){const gate=$('mxInventoryDetailGate');if(gate)gate.classList.add('mx-hidden')}
+  function openInventoryDetail(row){
+    if(!row)return;
+    const full=String(row.descripcion||'').replace(/\s+/g,' ').trim(),tags=inventoryPresentationTags(full);
+    $('mxInventoryDetailKey').textContent=String(row.clave||'SIN CLAVE');
+    $('mxInventoryDetailDescription').textContent=full||'Sin descripción disponible.';
+    $('mxInventoryDetailTags').innerHTML=tags.length?tags.map(x=>`<span class="mx-inventory-form-tag ${x.cls}">${esc(x.label)}</span>`).join(''):'<span class="mx-inventory-form-tag">PRESENTACIÓN NO IDENTIFICADA</span>';
+    $('mxInventoryDetailGate').classList.remove('mx-hidden');
+    setTimeout(()=>$('mxInventoryDetailClose')?.focus(),20);
+  }
   function renderInventory(){
     const q=norm($('inventoryQ')?.value||'');
     inventoryFiltered=inventoryItems.filter(r=>num(r.existencia)>0&&(!q||norm(r.clave).includes(q)||norm(r.descripcion).includes(q)));
     const rows=inventoryFiltered.slice(0,700);
-    $('inventoryTbody').innerHTML=rows.length?rows.map(r=>{
+    $('inventoryTbody').innerHTML=rows.length?rows.map((r,i)=>{
       const full=String(r.descripcion||'');
-      return `<tr><td><b class="inventory-key">${esc(r.clave||'')}</b></td><td class="inventory-description" title="${esc(full)}">${esc(compactInventoryDescription(full))}</td><td><span class="stock-total">Disponible</span></td></tr>`;
+      return `<tr class="mx-inventory-detail-row" data-inventory-index="${i}" tabindex="0" role="button" aria-label="Ver detalle de ${esc(r.clave||'producto')}"><td><b class="inventory-key">${esc(r.clave||'')}</b></td><td class="inventory-description" title="${esc(full)}">${esc(compactInventoryDescription(full))}</td><td><span class="stock-total">Disponible</span></td></tr>`;
     }).join(''):'<tr><td colspan="3" class="empty">No hay productos con existencia disponible.</td></tr>';
+    $('inventoryTbody').querySelectorAll('[data-inventory-index]').forEach(tr=>{const open=()=>openInventoryDetail(inventoryFiltered[Number(tr.dataset.inventoryIndex)]);tr.onclick=open;tr.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}});
   }
   function showViewerTab(name){const patients=name==='patients',inventory=name==='inventory';$('patientsView').classList.toggle('mx-hidden',!patients);$('inventoryView').classList.toggle('mx-hidden',!inventory);$('tabPatients').classList.toggle('active',patients);$('tabInventory').classList.toggle('active',inventory);if(inventory)loadInventoryData(false).catch(e=>{$('inventoryTbody').innerHTML=`<tr><td colspan="3" class="empty">${esc(e.message)}</td></tr>`;setFirebaseStatus(false,'Sin acceso a Firebase');});}
-  $('tabPatients').onclick=()=>showViewerTab('patients');$('tabInventory').onclick=()=>showViewerTab('inventory');$('btnInventoryReload').onclick=()=>loadInventoryData(true).catch(e=>{$('inventoryTbody').innerHTML=`<tr><td colspan="3" class="empty">${esc(e.message)}</td></tr>`;});$('inventoryQ').addEventListener('input',renderInventory);let mxInvResizeTimer=0;window.addEventListener('resize',()=>{clearTimeout(mxInvResizeTimer);mxInvResizeTimer=setTimeout(()=>{if(inventoryLoaded)renderInventory();},140);});
+  $('tabPatients').onclick=()=>showViewerTab('patients');$('tabInventory').onclick=()=>showViewerTab('inventory');$('btnInventoryReload').onclick=()=>loadInventoryData(true).catch(e=>{$('inventoryTbody').innerHTML=`<tr><td colspan="3" class="empty">${esc(e.message)}</td></tr>`;});$('inventoryQ').addEventListener('input',renderInventory);$('mxInventoryDetailClose').onclick=closeInventoryDetail;$('mxInventoryDetailGate').onclick=e=>{if(e.target===$('mxInventoryDetailGate'))closeInventoryDetail()};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('mxInventoryDetailGate')?.classList.contains('mx-hidden'))closeInventoryDetail()});let mxInvResizeTimer=0;window.addEventListener('resize',()=>{clearTimeout(mxInvResizeTimer);mxInvResizeTimer=setTimeout(()=>{if(inventoryLoaded)renderInventory();},140);});
   $('btnReload').onclick=()=>selectedKey?sendPatientQuery().catch(e=>{$('pillUpdated').textContent='Error: '+e.message;}):fetchData().catch(e=>{$('pillUpdated').textContent='Error: '+e.message;setFirebaseStatus(false,'Sin acceso a Firebase');});
   $('btnClear').onclick=()=>{selectedKey='';selectedName='';selectedExp='';raw=[];filtered=[];$('q').value='';renderPatients();renderTable();renderKpis();$('pillUpdated').textContent='Escribe un nombre para buscar';};
   $('q').addEventListener('input',()=>{selectedKey='';selectedName='';selectedExp='';raw=[];filtered=[];renderPatients();renderTable();renderKpis();$('pillUpdated').textContent='Selecciona un paciente de la lista';});
@@ -925,6 +962,10 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
   .top #btnReload{width:30px!important;min-width:30px!important;height:30px!important;min-height:30px!important}
   .mx-refresh-icon{font-size:18px!important;width:18px!important;height:18px!important;flex-basis:18px!important}
 }
+</style>
+<style id="mx-inventory-detail-v100">
+.inventory-table tbody tr.mx-inventory-detail-row{cursor:pointer;transition:background .15s ease,box-shadow .15s ease}.inventory-table tbody tr.mx-inventory-detail-row:hover td{background:#eef6ff}.inventory-table tbody tr.mx-inventory-detail-row:focus{outline:3px solid rgba(37,99,235,.20);outline-offset:-3px}.mx-inventory-detail-overlay{position:fixed;inset:0;z-index:12000;background:rgba(15,23,42,.58);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:14px}.mx-inventory-detail-overlay.mx-hidden{display:none!important}.mx-inventory-detail-card{width:min(720px,100%);max-height:86vh;overflow:auto;background:#fff;border:1px solid #dbe5f1;border-radius:20px;box-shadow:0 28px 80px rgba(15,23,42,.34);padding:16px}.mx-inventory-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.mx-inventory-detail-eyebrow{display:block;font-size:9px;font-weight:950;letter-spacing:.08em;color:#64748b}.mx-inventory-detail-head h3{margin:3px 0 0!important;font-size:20px!important;color:#0f2745}.mx-inventory-detail-close{width:38px;min-width:38px;height:38px;min-height:38px;padding:0;border-radius:11px;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;box-shadow:none;font-size:25px;line-height:1;display:flex;align-items:center;justify-content:center}.mx-inventory-detail-close:hover{transform:none;background:#e0e7ff}.mx-inventory-detail-key{margin-top:12px;padding:9px 11px;border-radius:11px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:15px;font-weight:950;letter-spacing:.02em}.mx-inventory-detail-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.mx-inventory-form-tag{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;border:1px solid #cbd5e1;background:#f8fafc;color:#334155;font-size:10px;font-weight:950}.mx-inventory-form-tag.tableta,.mx-inventory-form-tag.comprimido{background:#eef2ff;border-color:#c7d2fe;color:#3730a3}.mx-inventory-form-tag.frasco,.mx-inventory-form-tag.ampula{background:#ecfeff;border-color:#a5f3fc;color:#155e75}.mx-inventory-form-tag.inyectable{background:#f0fdf4;border-color:#bbf7d0;color:#166534}.mx-inventory-detail-section{margin-top:12px;padding:12px;border-radius:13px;border:1px solid #dbe5f1;background:#f8fbff}.mx-inventory-detail-section>span{display:block;font-size:9px;font-weight:950;color:#64748b;letter-spacing:.05em}.mx-inventory-detail-section p{margin:6px 0 0;color:#0f172a;font-size:14px;line-height:1.48;font-weight:750;overflow-wrap:anywhere}.mx-inventory-detail-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}.mx-inventory-detail-available{display:inline-flex;padding:7px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:11px;font-weight:950}.mx-inventory-detail-footer small{color:#64748b;font-size:9px;font-weight:800}
+@media(max-width:600px){.mx-inventory-detail-overlay{align-items:flex-end;padding:8px}.mx-inventory-detail-card{width:100%;max-height:82vh;border-radius:18px 18px 10px 10px;padding:13px}.mx-inventory-detail-head h3{font-size:18px!important}.mx-inventory-detail-close{width:36px;min-width:36px;height:36px;min-height:36px}.mx-inventory-detail-key{font-size:13px}.mx-inventory-detail-section p{font-size:15px;line-height:1.5}.mx-inventory-form-tag{font-size:10px;padding:6px 8px}.mx-inventory-detail-footer small{display:none}}
 </style>
 <script id="mx-solo-existencias-runtime-v1023">
 (function(){
