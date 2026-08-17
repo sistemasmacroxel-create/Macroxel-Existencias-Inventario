@@ -3,17 +3,7 @@
 <html lang="es">
 <head>
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
-<style id="mx-single-ui-boot-v100">
-html.mx-ui-boot body{margin:0!important;background:#eef6fb!important;overflow:hidden!important}
-html.mx-ui-boot body>*:not(#mxUiBootV100){visibility:hidden!important;pointer-events:none!important}
-#mxUiBootV100{position:fixed;inset:0;z-index:2147483646;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#eaf5fb,#f8fbfe);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-#mxUiBootV100 .mx-b{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1px solid #d7e5f0;border-radius:16px;background:#fff;box-shadow:0 14px 45px rgba(15,52,82,.15);color:#0f3558;font-weight:900;font-size:14px}
-#mxUiBootV100 .mx-s{width:12px;height:12px;border-radius:50%;background:#2563eb;box-shadow:0 0 0 5px rgba(37,99,235,.14);animation:mxbootpulse 1s ease-in-out infinite alternate}
-@keyframes mxbootpulse{to{transform:scale(.72);opacity:.55}}
-</style>
-<script id="mx-single-ui-boot-head-v100">document.documentElement.classList.add('mx-ui-boot');</script>
-
-  <!-- Iconos unificados MACROXEL v1.0.00 · navegador + iOS + Android/PWA -->
+<!-- Iconos unificados MACROXEL v1.0.00 · navegador + iOS + Android/PWA -->
 
 
 
@@ -575,10 +565,161 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 }
 
 </style>
+
+<!-- MACROXEL v1.0.00 · estilos finales precargados; sin interfaz heredada -->
+<style id="mx-solo-existencias-v1023">
+#patientsView.mx-hidden{display:none!important}
+#patientsView:not(.mx-hidden){display:block!important}
+#inventoryView:not(.mx-hidden){display:block!important}
+#inventoryView.mx-hidden,#expiryView.mx-hidden{display:none!important}
+.inventory-card{margin-top:12px}
+.brand-tag{font-weight:800}
+.top-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:nowrap;flex:0 0 auto}
+.top #btnReload{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;height:36px!important;min-height:36px!important;padding:0 12px!important;margin:0!important;line-height:1!important;white-space:nowrap!important;transform:none!important}
+#btnReload:hover{transform:none!important}
+#btnReload::before{content:none!important;display:none!important}
+.mx-refresh-icon{display:inline-flex;align-items:center;justify-content:center;font-size:19px;line-height:1;width:18px;height:18px;flex:0 0 18px}
+.mx-refresh-label{display:inline-block;font-size:11px;line-height:1;font-weight:900}
+#firebaseStatus.mx-connection-dot{align-self:center!important;margin:0!important;transform:none!important}
+#firebaseStatus.mx-connection-dot .dot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
+#firebaseStatus.mx-connection-dot.ok .dot{background:#22c55e!important;box-shadow:0 0 0 4px rgba(34,197,94,.18)!important}
+#firebaseStatus.mx-connection-dot.bad .dot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
+.mx-inventory-search-only{grid-template-columns:1fr!important}
+.mx-search-clear-wrap{display:grid!important;grid-template-columns:minmax(0,1fr) 34px!important;gap:6px!important;align-items:center!important;position:static!important;width:100%!important}
+.mx-search-clear-wrap input{min-width:0!important;width:100%!important;height:42px!important;padding:10px 12px!important;margin:0!important}
+.mx-search-clear{position:static!important;inset:auto!important;transform:none!important;width:34px!important;min-width:34px!important;height:34px!important;min-height:34px!important;padding:0!important;margin:0!important;align-self:center!important;border-radius:9px!important;background:#e2e8f0!important;color:#475569!important;border:1px solid #cbd5e1!important;box-shadow:none!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.mx-search-clear span{display:block;font-size:20px!important;line-height:1!important;transform:translateY(-1px)}
+.mx-search-clear:hover{background:#fee2e2!important;color:#b91c1c!important;border-color:#fecaca!important;transform:none!important}
+.mx-search-clear:disabled{opacity:.42;cursor:default}
+.mx-hidden{display:none!important}
+@media(max-width:760px){
+  .top-actions{gap:6px!important}
+  .top #btnReload{width:34px!important;min-width:34px!important;height:34px!important;min-height:34px!important;padding:0!important;border-radius:9px!important}
+  .mx-refresh-label{display:none!important}
+  .mx-refresh-icon{font-size:20px!important;width:20px!important;height:20px!important;flex-basis:20px!important}
+  .mx-search-clear-wrap{grid-template-columns:minmax(0,1fr) 32px!important;gap:5px!important}
+  .mx-search-clear{width:32px!important;min-width:32px!important;height:32px!important;min-height:32px!important}
+  .mx-search-clear-wrap input{height:40px!important}
+}
+@media(max-width:430px){
+  .top-actions{gap:5px!important}
+  .top #btnReload{width:30px!important;min-width:30px!important;height:30px!important;min-height:30px!important}
+  .mx-refresh-icon{font-size:18px!important;width:18px!important;height:18px!important;flex-basis:18px!important}
+}
+</style>
+<style id="mx-inventory-detail-v100">
+.inventory-table tbody tr.mx-inventory-detail-row{cursor:pointer;transition:background .15s ease,box-shadow .15s ease}.inventory-table tbody tr.mx-inventory-detail-row:hover td{background:#eef6ff}.inventory-table tbody tr.mx-inventory-detail-row:focus{outline:3px solid rgba(37,99,235,.20);outline-offset:-3px}.mx-inventory-detail-overlay{position:fixed;inset:0;z-index:12000;background:rgba(15,23,42,.58);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:14px}.mx-inventory-detail-overlay.mx-hidden{display:none!important}.mx-inventory-detail-card{width:min(720px,100%);max-height:86vh;overflow:auto;background:#fff;border:1px solid #dbe5f1;border-radius:20px;box-shadow:0 28px 80px rgba(15,23,42,.34);padding:16px}.mx-inventory-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.mx-inventory-detail-eyebrow{display:block;font-size:9px;font-weight:950;letter-spacing:.08em;color:#64748b}.mx-inventory-detail-head h3{margin:3px 0 0!important;font-size:20px!important;color:#0f2745}.mx-inventory-detail-close{width:38px;min-width:38px;height:38px;min-height:38px;padding:0;border-radius:11px;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;box-shadow:none;font-size:25px;line-height:1;display:flex;align-items:center;justify-content:center}.mx-inventory-detail-close:hover{transform:none;background:#e0e7ff}.mx-inventory-detail-key{margin-top:12px;padding:9px 11px;border-radius:11px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:15px;font-weight:950;letter-spacing:.02em}.mx-inventory-detail-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.mx-inventory-form-tag{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;border:1px solid #cbd5e1;background:#f8fafc;color:#334155;font-size:10px;font-weight:950}.mx-inventory-form-tag.tableta,.mx-inventory-form-tag.comprimido{background:#eef2ff;border-color:#c7d2fe;color:#3730a3}.mx-inventory-form-tag.frasco,.mx-inventory-form-tag.ampula{background:#ecfeff;border-color:#a5f3fc;color:#155e75}.mx-inventory-form-tag.inyectable{background:#f0fdf4;border-color:#bbf7d0;color:#166534}.mx-inventory-detail-section{margin-top:12px;padding:12px;border-radius:13px;border:1px solid #dbe5f1;background:#f8fbff}.mx-inventory-detail-section>span{display:block;font-size:9px;font-weight:950;color:#64748b;letter-spacing:.05em}.mx-inventory-detail-section p{margin:6px 0 0;color:#0f172a;font-size:14px;line-height:1.48;font-weight:750;overflow-wrap:anywhere}.mx-inventory-detail-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}.mx-inventory-detail-available{display:inline-flex;padding:7px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:11px;font-weight:950}.mx-inventory-detail-footer small{color:#64748b;font-size:9px;font-weight:800}
+@media(max-width:600px){.mx-inventory-detail-overlay{align-items:flex-end;padding:8px}.mx-inventory-detail-card{width:100%;max-height:82vh;border-radius:18px 18px 10px 10px;padding:13px}.mx-inventory-detail-head h3{font-size:18px!important}.mx-inventory-detail-close{width:36px;min-width:36px;height:36px;min-height:36px}.mx-inventory-detail-key{font-size:13px}.mx-inventory-detail-section p{font-size:15px;line-height:1.5}.mx-inventory-form-tag{font-size:10px;padding:6px 8px}.mx-inventory-detail-footer small{display:none}}
+</style>
+<style id="mx-expiry-module-v100">
+#tabPatients{display:none!important}
+.viewer-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:6px;margin-top:8px}
+.viewer-tab{min-width:0;padding:9px 8px;font-size:11px;line-height:1.15;white-space:normal;box-shadow:none}
+.expiry-card{margin-top:10px;padding:11px}
+.expiry-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.expiry-heading h3{margin:0!important;font-size:15px}
+.expiry-heading p{margin:3px 0 0;color:#64748b;font-size:10px;line-height:1.25}
+.expiry-range{flex:0 0 auto;padding:5px 8px;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:9px;font-weight:950}
+.expiry-search{margin-top:9px}
+.expiry-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}
+.expiry-kpi{min-width:0;padding:7px 8px;border:1px solid #dbe5f1;border-radius:11px;background:#f8fbff}
+.expiry-kpi span{display:block;color:#64748b;font-size:8px;font-weight:900;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.expiry-kpi b{display:block;margin-top:2px;color:#0f3f75;font-size:17px;line-height:1}
+.expiry-status{margin:8px 0 6px;color:#64748b;font-size:9px;font-weight:800}
+.expiry-results{display:grid;gap:6px;max-height:66vh;overflow:auto;padding-right:2px}
+.expiry-item{border:1px solid #dbe5f1;border-left:4px solid #f59e0b;border-radius:12px;background:#fff;padding:8px 9px;box-shadow:0 5px 14px rgba(15,23,42,.05)}
+.expiry-item.urgent{border-left-color:#dc2626;background:#fffafa}
+.expiry-item.soon{border-left-color:#ea580c}
+.expiry-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}
+.expiry-key{font-size:10px;font-weight:950;color:#1e40af;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.expiry-name{margin-top:2px;color:#1e293b;font-size:10px;font-weight:800;line-height:1.2;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.expiry-qty{min-width:54px;text-align:center;padding:5px 7px;border-radius:10px;background:#ecfdf5;border:1px solid #bbf7d0;color:#166534}
+.expiry-qty b{display:block;font-size:17px;line-height:1}
+.expiry-qty small{display:block;margin-top:2px;font-size:7px;font-weight:950}
+.expiry-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.expiry-meta span{padding:3px 6px;border-radius:999px;background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;font-size:8px;font-weight:850}
+.expiry-meta .date{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
+.expiry-item.urgent .expiry-meta .date{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+@media(min-width:761px){
+  .viewer-tabs{max-width:780px}
+  .viewer-tab{font-size:12px}
+  .expiry-card{padding:14px}
+  .expiry-results{grid-template-columns:repeat(2,minmax(0,1fr));max-height:63vh}
+  .expiry-name{font-size:11px}
+}
+@media(max-width:430px){
+  .viewer-tabs{position:sticky;top:56px;z-index:18;margin:0 0 5px;padding:5px}
+  .viewer-tab{padding:7px 3px;font-size:8.5px;min-height:34px}
+  .expiry-card{margin-top:5px;padding:8px}
+  .expiry-heading p{display:none}
+  .expiry-search{margin-top:7px}
+  .expiry-results{max-height:68vh}
+}
+.mx-medical-tab-count{display:inline-flex;min-width:16px;height:16px;align-items:center;justify-content:center;margin-left:3px;padding:0 4px;border-radius:999px;background:#dc2626;color:#fff;font-size:8px;font-weight:950;vertical-align:1px}.mx-medical-validation-card{margin-top:10px;padding:11px}.mx-medical-validation-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.mx-medical-validation-head h3{margin:0;font-size:15px}.mx-medical-validation-head p{margin:3px 0 0;color:#64748b;font-size:10px;line-height:1.3}.mx-medical-doctor-button{flex:0 0 auto;padding:7px 9px;border-radius:10px;font-size:9px}.mx-medical-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:9px}.mx-medical-kpis>div{min-width:0;padding:7px 8px;border:1px solid #dbe5f1;border-radius:11px;background:#f8fbff}.mx-medical-kpis span{display:block;color:#64748b;font-size:8px;font-weight:900;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-medical-kpis b{display:block;margin-top:2px;color:#0f3f75;font-size:17px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-medical-kpis #mxMedicalDoctorShort{font-size:10px;padding-top:4px}.mx-medical-validation-status{margin:8px 0 6px;color:#64748b;font-size:9px;font-weight:800}.mx-medical-order-list{display:grid;gap:7px;max-height:67vh;overflow:auto;padding-right:2px}.mx-medical-order{width:100%;text-align:left;background:#fff;color:#0f172a;border:1px solid #dbe5f1;border-left:4px solid #f59e0b;box-shadow:0 5px 14px rgba(15,23,42,.05);padding:9px 10px;border-radius:12px}.mx-medical-order.approved{border-left-color:#16a34a}.mx-medical-order:hover{transform:none;filter:none;background:#f8fbff}.mx-medical-order-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.mx-medical-folio{font-size:10px;font-weight:950;color:#1e40af}.mx-medical-type{margin-top:2px;font-size:10px;font-weight:900;color:#1e293b}.mx-medical-summary{margin-top:5px;color:#475569;font-size:9px;line-height:1.35}.mx-medical-state{flex:0 0 auto;padding:4px 7px;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:8px;font-weight:950}.mx-medical-state.approved{background:#f0fdf4;border-color:#bbf7d0;color:#166534}.mx-medical-order.informative{border-left-color:#2563eb}.mx-medical-state.informative{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}.mx-medical-info-note{margin-top:10px;padding:8px 9px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:9px;font-weight:850}.mx-medical-overlay{position:fixed;inset:0;z-index:2147482500;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(3,15,31,.68);backdrop-filter:blur(4px)}.mx-medical-overlay.mx-hidden{display:none!important}.mx-medical-dialog{width:min(720px,100%);max-height:90vh;overflow:auto;background:#fff;border:1px solid #dbe5f1;border-radius:18px;box-shadow:0 28px 70px rgba(2,18,40,.32);padding:14px}.mx-medical-doctor-dialog{width:min(720px,100%)}.mx-medical-dialog-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.mx-medical-dialog-head h3{margin:0;font-size:17px}.mx-medical-dialog-head p{margin:3px 0 0;color:#64748b;font-size:10px}.mx-medical-x{width:34px;height:34px;padding:0;border-radius:10px;background:#eef2f7;color:#334155;box-shadow:none;font-size:20px}.mx-medical-dialog label{font-size:10px}.mx-medical-doctor-search{position:relative;margin-top:4px}.mx-medical-doctor-search input{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#0f172a;padding:12px 13px;font:inherit;font-size:15px;font-weight:750;outline:none}.mx-medical-doctor-search input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}.mx-medical-doctor-results{position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:20;max-height:360px;overflow:auto;padding:5px;background:#fff;border:1px solid #cbd5e1;border-radius:12px;box-shadow:0 16px 34px rgba(15,23,42,.16)}.mx-medical-doctor-results.mx-hidden{display:none!important}.mx-medical-doctor-option{display:block;width:100%;padding:12px 12px;border:0;border-radius:9px;background:#fff;color:#0f172a;text-align:left;box-shadow:none}.mx-medical-doctor-option:hover,.mx-medical-doctor-option.active{background:#eff6ff;transform:none;filter:none}.mx-medical-doctor-option b{display:block;font-size:13px}.mx-medical-doctor-option small{display:block;margin-top:3px;color:#64748b;font-size:10px}.mx-medical-help{margin-top:7px;color:#64748b;font-size:9px;line-height:1.35}.mx-medical-dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:13px}.mx-medical-order-actions{align-items:stretch}.mx-medical-order-actions #mxMedicalApproveButton{flex:1 1 auto}.mx-medical-close-bottom{flex:0 0 auto!important;width:auto!important;min-width:72px;padding:8px 12px!important;background:#eef2f7!important;color:#334155!important;border:1px solid #cbd5e1!important;box-shadow:none!important;font-weight:900!important}.mx-medical-close-bottom:hover{background:#e2e8f0!important;transform:none!important;filter:none!important}.mx-medical-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:10px}.mx-medical-detail-grid>div{min-width:0;padding:6px 7px;border:1px solid #dbe5f1;border-radius:9px;background:#f8fbff}.mx-medical-detail-grid span{display:block;color:#64748b;font-size:7.5px;font-weight:900;text-transform:uppercase}.mx-medical-detail-grid b{display:block;margin-top:2px;font-size:9px;color:#163b5c;overflow-wrap:anywhere;line-height:1.2}.mx-medical-items{display:grid;gap:6px}.mx-medical-item{padding:8px 9px;border:1px solid #dbe5f1;border-radius:11px;background:#fff}.mx-medical-item b{display:block;font-size:10px;color:#1e40af}.mx-medical-item span{display:block;margin-top:2px;font-size:9px;color:#334155;line-height:1.3}.mx-medical-item small{display:block;margin-top:3px;font-size:8px;color:#64748b}.mx-medical-request-qty{color:#1e40af;font-weight:950;font-size:9px}.mx-medical-approved-note{margin-top:10px;padding:8px 9px;border-radius:10px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:9px;font-weight:850}.mx-medical-dialog-actions button[disabled]{opacity:.62;cursor:default}.mx-medical-dialog-actions button[disabled]:hover{transform:none;filter:none}
+@media(min-width:761px){.mx-medical-order-list{grid-template-columns:repeat(2,minmax(0,1fr));max-height:63vh}.mx-medical-validation-card{padding:14px}}
+@media(max-width:430px){.mx-medical-validation-card{margin-top:5px;padding:8px}.mx-medical-validation-head p{display:none}.mx-medical-doctor-button{max-width:42%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-medical-order-list{max-height:69vh}.mx-medical-overlay{align-items:flex-end;padding:7px}.mx-medical-order-dialog{max-height:92vh;border-radius:17px 17px 9px 9px;padding:11px}.mx-medical-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.mx-medical-detail-grid>div{padding:6px 7px}.mx-medical-detail-grid b{font-size:9px}.mx-medical-dialog-actions button{width:100%}.mx-medical-order-actions{display:flex;flex-direction:row;gap:7px;position:sticky;bottom:0;z-index:5;padding-top:7px;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff 24%)}.mx-medical-order-actions #mxMedicalApproveButton{width:auto;min-width:0;flex:1 1 auto}.mx-medical-order-actions .mx-medical-close-bottom{width:auto!important;min-width:68px!important;flex:0 0 auto!important;padding:7px 10px!important;font-size:11px!important}.mx-medical-doctor-dialog{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;border:0;border-radius:0;padding:calc(14px + env(safe-area-inset-top)) 14px calc(12px + env(safe-area-inset-bottom));box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}.mx-medical-doctor-dialog .mx-medical-dialog-head{flex:0 0 auto;margin-bottom:12px}.mx-medical-doctor-dialog .mx-medical-dialog-head h3{font-size:22px}.mx-medical-doctor-dialog .mx-medical-dialog-head p{display:block;font-size:12px;line-height:1.35}.mx-medical-doctor-dialog>label{font-size:12px;margin-top:4px}.mx-medical-doctor-search{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;margin-top:7px}.mx-medical-doctor-search input{flex:0 0 auto;padding:14px 14px;font-size:17px;border-radius:14px}.mx-medical-doctor-results{position:static;left:auto;right:auto;top:auto;z-index:auto;flex:1 1 auto;min-height:0;max-height:none;margin-top:8px;overflow:auto;border-radius:14px;box-shadow:none}.mx-medical-doctor-option{padding:14px 12px;min-height:58px}.mx-medical-doctor-option b{font-size:14px}.mx-medical-doctor-option small{font-size:11px}.mx-medical-doctor-dialog .mx-medical-help{flex:0 0 auto;font-size:10px;margin-top:8px}.mx-medical-doctor-dialog .mx-medical-dialog-actions{flex:0 0 auto;margin-top:8px}.mx-medical-doctor-dialog .mx-medical-dialog-actions button{min-height:44px;font-size:13px}}
+</style>
+<style id="mx-connection-diagnostic-style-v104">
+#mxConnectionDiagnostic{position:fixed;right:8px;bottom:4px;z-index:9997;max-width:72vw;padding:3px 7px;border-radius:8px;background:rgba(255,255,255,.86);border:1px solid rgba(148,163,184,.45);box-shadow:0 2px 8px rgba(15,23,42,.08);font:600 9px/1.2 'Segoe UI',Arial,sans-serif;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;backdrop-filter:blur(3px)}
+@media(max-width:640px){#mxConnectionDiagnostic{font-size:8px;right:4px;bottom:3px;max-width:88vw}}
+</style>
+<style id="mx-ecosystem-live-id-v1010-style">
+#mxConnectionDiagnostic{display:none!important}
+#mxEcosystemLiveId{position:fixed;left:10px;right:auto;bottom:max(8px,env(safe-area-inset-bottom));z-index:9990;max-width:min(92vw,820px);padding:5px 9px;border:1px solid #cbd5e1;border-radius:10px;background:rgba(255,255,255,.96);box-shadow:0 4px 14px rgba(15,23,42,.12);font:700 9px/1.25 system-ui;color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mxEcosystemLiveId b{color:#0f4c81}
+.mx-connection-gate-info{margin:9px 0 2px;padding:8px 10px;border:1px solid #bfdbfe;border-radius:11px;background:#eff6ff;color:#1e3a5f;font:700 10px/1.35 system-ui;word-break:break-all}
+.mx-connection-gate-info b{color:#0b4f7d}
+@media(max-width:600px){#mxEcosystemLiveId{left:8px;right:8px;max-width:none;font-size:8px}.mx-connection-gate-info{font-size:9px;padding:7px 8px}}
+</style>
+<style id="mx-logo-connection-info-v100-style">
+#mxEcosystemLiveId,#liveId.footer-id,.footer-id,#mxConnectionDiagnostic{display:none!important}
+.mx-logo-info-trigger{cursor:pointer!important;touch-action:manipulation;outline:none}
+.mx-logo-info-trigger:focus-visible{box-shadow:0 0 0 3px rgba(37,99,235,.35)!important;border-radius:10px}
+#mxLogoInfoOverlay{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(8,22,43,.72);backdrop-filter:blur(5px);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+#mxLogoInfoOverlay.mx-show{display:flex}
+#mxLogoInfoCard{width:min(620px,100%);max-height:min(88vh,760px);overflow:auto;background:#fff;border:1px solid #d8e3f0;border-radius:20px;box-shadow:0 28px 70px rgba(2,18,40,.34);color:#102a43}
+.mx-li-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;background:linear-gradient(135deg,#08365f,#0f6fa4);color:#fff;border-radius:19px 19px 0 0}
+.mx-li-head h2{margin:0;font-size:18px;line-height:1.2}.mx-li-head small{display:block;margin-top:3px;font-size:11px;opacity:.85}.mx-li-close{width:36px;height:36px;border:0;border-radius:11px;background:rgba(255,255,255,.17);color:#fff;font-size:22px;font-weight:900;cursor:pointer}
+.mx-li-body{padding:16px 18px 19px}.mx-li-section{margin:0 0 14px}.mx-li-section:last-child{margin-bottom:0}.mx-li-title{margin:0 0 8px;font-size:11px;font-weight:950;letter-spacing:.05em;text-transform:uppercase;color:#4b6b88}
+.mx-li-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.mx-li-row{min-width:0;padding:10px 11px;border:1px solid #dbe7f2;border-radius:12px;background:#f8fbfe}.mx-li-row.mx-wide{grid-column:1/-1}.mx-li-row span{display:block;margin-bottom:3px;font-size:9px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#647b91}.mx-li-row b{display:block;font-size:12px;line-height:1.35;color:#102f4c;overflow-wrap:anywhere;word-break:break-word}.mx-li-state{display:inline-flex!important;width:auto!important;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#dcfce7;color:#166534!important}.mx-li-state.mx-off{background:#fee2e2;color:#991b1b!important}.mx-li-designer{margin-top:11px;padding:10px 12px;border-radius:11px;background:#f8fafc;border:1px solid #dbe5f1;color:#123e72;text-align:center;font-size:11px;line-height:1.35}.mx-li-foot{margin-top:11px;padding:8px 10px;border-radius:10px;background:#eff6ff;color:#315776;font-size:10px;line-height:1.4}
+@media(max-width:540px){#mxLogoInfoOverlay{padding:9px;align-items:flex-end}#mxLogoInfoCard{max-height:90vh;border-radius:18px 18px 10px 10px}.mx-li-head{padding:13px 14px;border-radius:17px 17px 0 0}.mx-li-head h2{font-size:16px}.mx-li-body{padding:13px 14px 16px}.mx-li-grid{grid-template-columns:1fr}.mx-li-row.mx-wide{grid-column:auto}.mx-li-row{padding:9px 10px}.mx-li-row b{font-size:11px}}
+</style>
+<style id="mx-pacientes-reactivado-v1025">
+#tabPatients{display:inline-flex!important;align-items:center;justify-content:center}
+.viewer-tabs{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+@media(max-width:760px){.viewer-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.viewer-tab{min-width:0;padding:7px 5px!important;font-size:9px!important}}
+</style>
+<style id="mx-visor-header-login-v1025">
+#firebaseStatus,#pillUpdated,.mx-viewer-license-badge{display:none!important}
+#mxLogoInfoOverlay{display:none!important;visibility:hidden!important}
+#mxCompactStatusV1025{flex:0 0 auto;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;padding:0!important;margin:0!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.30)!important;background:rgba(255,255,255,.12)!important;box-shadow:none!important;cursor:default!important;touch-action:manipulation!important}
+#mxCompactStatusV1025 .mx-cdot{width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.18);transition:.15s}
+#mxCompactStatusV1025.mx-ok .mx-cdot{background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}#mxCompactStatusV1025.mx-bad .mx-cdot{background:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.18)}
+#mxActivationLoginV1025{position:fixed;inset:0;z-index:2147483600;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(5,22,42,.76);backdrop-filter:blur(5px);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}#mxActivationLoginV1025.mx-show{display:flex}
+#mxActivationLoginV1025 .mx-login-card{width:min(590px,100%);max-height:88vh;overflow:auto;background:#fff;border:1px solid #d7e3ef;border-radius:19px;box-shadow:0 30px 80px rgba(0,0,0,.34);color:#102a43}#mxActivationLoginV1025 .mx-login-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:15px 17px;background:linear-gradient(135deg,#08365f,#0f6fa4);color:#fff;border-radius:18px 18px 0 0}#mxActivationLoginV1025 .mx-login-head h2{margin:0;font-size:17px;line-height:1.2}#mxActivationLoginV1025 .mx-login-head small{display:block;margin-top:3px;font-size:10px;opacity:.85}#mxActivationLoginV1025 .mx-login-x{width:36px;height:36px;min-width:36px;padding:0;border:0;border-radius:10px;background:rgba(255,255,255,.17);color:#fff;font-size:25px;font-weight:900;line-height:1;cursor:pointer}
+#mxActivationLoginV1025 .mx-login-body{padding:15px 17px 17px}#mxActivationLoginV1025 .mx-login-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#mxActivationLoginV1025 .mx-login-row{min-width:0;border:1px solid #dbe7f2;border-radius:11px;background:#f8fbfe;padding:9px 10px}#mxActivationLoginV1025 .mx-login-row.mx-wide{grid-column:1/-1}#mxActivationLoginV1025 .mx-login-row span{display:block;margin-bottom:3px;color:#647b91;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}#mxActivationLoginV1025 .mx-login-row b{display:block;color:#123e62;font-size:12px;line-height:1.35;overflow-wrap:anywhere}#mxActivationLoginV1025 .mx-login-state.mx-ok{color:#166534}#mxActivationLoginV1025 .mx-login-state.mx-bad{color:#991b1b}#mxActivationLoginV1025 .mx-login-designer{margin-top:11px;padding:10px;border:1px solid #dbe5f1;border-radius:11px;background:#f8fafc;color:#123e72;text-align:center;font-size:11px;font-weight:900;line-height:1.4}#mxActivationLoginV1025 .mx-login-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}#mxActivationLoginV1025 .mx-login-actions button{border:0;border-radius:10px;padding:8px 11px;background:#e2e8f0;color:#334155;font-size:10px;font-weight:900;cursor:pointer}
+@media(max-width:560px){#mxCompactStatusV1025{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important}#mxActivationLoginV1025{align-items:flex-end;padding:8px}#mxActivationLoginV1025 .mx-login-card{max-height:91vh;border-radius:17px 17px 9px 9px}#mxActivationLoginV1025 .mx-login-grid{grid-template-columns:1fr}#mxActivationLoginV1025 .mx-login-row.mx-wide{grid-column:auto}}
+</style>
+<style id="mx-auto-refresh-connectivity-v1029-style">
+/* v1.0.00 · la actualización es automática; no se muestran controles manuales de recarga. */
+button[data-mx-manual-refresh="1"]{display:none!important}
+#btnReload,#btnInventoryReload,#btnRefreshTransferAdjust,#btnPoReload,#mxIcReload,#mxIcHistoryRefresh,#mxNetRefresh,#vlaRefresh,#refreshBtn,#refreshHistory,#refreshConsumption,#refreshJustifiedValidation,#reload{display:none!important}
+button[data-ic-status]{display:none!important}
+/* Semáforo único: rojo por defecto; verde únicamente después de comprobar Firebase de trabajo. */
+#mxCompactStatusV1025 .mx-cdot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
+#mxCompactStatusV1025.mx-ok .mx-cdot{background:#22c55e!important;box-shadow:0 0 0 4px rgba(34,197,94,.20)!important}
+#mxCompactStatusV1025.mx-bad .mx-cdot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
+</style>
+<style id="mx-activation-clean-v100">
+/* Activación compacta: solo datos personales visibles; el ID técnico se conserva internamente. */
+#mxIdentityHint{display:none!important}
+.mx-va-idline,.mx-va-device,#mxVaDevice,#mxVaCopy,#deviceIdBox,#deviceBox,#activationDevice,#viewerDevice{display:none!important}
+#mxViewerActivationGate .mx-va-card,#activationGate .gate-card,#mxVaGate .mx-va-card{max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain}
+#mxViewerActivationGate .mx-va-actions,#activationGate .gate-actions,#mxVaGate .mx-va-actions{position:sticky;bottom:0;z-index:8;background:#fff;padding-top:10px;padding-bottom:2px;border-top:1px solid rgba(203,213,225,.65)}
+#mxVaSubmit,#actSubmit,#sendActivation,#activationSubmit,#btnActivationSubmit{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;opacity:1!important}
+</style>
 </head>
 <body>
-<div id="mxUiBootV100" aria-live="polite"><div class="mx-b"><span class="mx-s"></span><span>MACROXEL · cargando interfaz segura…</span></div></div>
-
 <div class="wrap">
 <div class="top">
 <div class="brand">
@@ -1088,50 +1229,8 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
 })();
 </script>
 
-<style id="mx-solo-existencias-v1023">
-#patientsView.mx-hidden{display:none!important}
-#patientsView:not(.mx-hidden){display:block!important}
-#inventoryView:not(.mx-hidden){display:block!important}
-#inventoryView.mx-hidden,#expiryView.mx-hidden{display:none!important}
-.inventory-card{margin-top:12px}
-.brand-tag{font-weight:800}
-.top-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:nowrap;flex:0 0 auto}
-.top #btnReload{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;height:36px!important;min-height:36px!important;padding:0 12px!important;margin:0!important;line-height:1!important;white-space:nowrap!important;transform:none!important}
-#btnReload:hover{transform:none!important}
-#btnReload::before{content:none!important;display:none!important}
-.mx-refresh-icon{display:inline-flex;align-items:center;justify-content:center;font-size:19px;line-height:1;width:18px;height:18px;flex:0 0 18px}
-.mx-refresh-label{display:inline-block;font-size:11px;line-height:1;font-weight:900}
-#firebaseStatus.mx-connection-dot{align-self:center!important;margin:0!important;transform:none!important}
-#firebaseStatus.mx-connection-dot .dot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
-#firebaseStatus.mx-connection-dot.ok .dot{background:#22c55e!important;box-shadow:0 0 0 4px rgba(34,197,94,.18)!important}
-#firebaseStatus.mx-connection-dot.bad .dot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
-.mx-inventory-search-only{grid-template-columns:1fr!important}
-.mx-search-clear-wrap{display:grid!important;grid-template-columns:minmax(0,1fr) 34px!important;gap:6px!important;align-items:center!important;position:static!important;width:100%!important}
-.mx-search-clear-wrap input{min-width:0!important;width:100%!important;height:42px!important;padding:10px 12px!important;margin:0!important}
-.mx-search-clear{position:static!important;inset:auto!important;transform:none!important;width:34px!important;min-width:34px!important;height:34px!important;min-height:34px!important;padding:0!important;margin:0!important;align-self:center!important;border-radius:9px!important;background:#e2e8f0!important;color:#475569!important;border:1px solid #cbd5e1!important;box-shadow:none!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
-.mx-search-clear span{display:block;font-size:20px!important;line-height:1!important;transform:translateY(-1px)}
-.mx-search-clear:hover{background:#fee2e2!important;color:#b91c1c!important;border-color:#fecaca!important;transform:none!important}
-.mx-search-clear:disabled{opacity:.42;cursor:default}
-.mx-hidden{display:none!important}
-@media(max-width:760px){
-  .top-actions{gap:6px!important}
-  .top #btnReload{width:34px!important;min-width:34px!important;height:34px!important;min-height:34px!important;padding:0!important;border-radius:9px!important}
-  .mx-refresh-label{display:none!important}
-  .mx-refresh-icon{font-size:20px!important;width:20px!important;height:20px!important;flex-basis:20px!important}
-  .mx-search-clear-wrap{grid-template-columns:minmax(0,1fr) 32px!important;gap:5px!important}
-  .mx-search-clear{width:32px!important;min-width:32px!important;height:32px!important;min-height:32px!important}
-  .mx-search-clear-wrap input{height:40px!important}
-}
-@media(max-width:430px){
-  .top-actions{gap:5px!important}
-  .top #btnReload{width:30px!important;min-width:30px!important;height:30px!important;min-height:30px!important}
-  .mx-refresh-icon{font-size:18px!important;width:18px!important;height:18px!important;flex-basis:18px!important}
-}
-</style>
-<style id="mx-inventory-detail-v100">
-.inventory-table tbody tr.mx-inventory-detail-row{cursor:pointer;transition:background .15s ease,box-shadow .15s ease}.inventory-table tbody tr.mx-inventory-detail-row:hover td{background:#eef6ff}.inventory-table tbody tr.mx-inventory-detail-row:focus{outline:3px solid rgba(37,99,235,.20);outline-offset:-3px}.mx-inventory-detail-overlay{position:fixed;inset:0;z-index:12000;background:rgba(15,23,42,.58);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:14px}.mx-inventory-detail-overlay.mx-hidden{display:none!important}.mx-inventory-detail-card{width:min(720px,100%);max-height:86vh;overflow:auto;background:#fff;border:1px solid #dbe5f1;border-radius:20px;box-shadow:0 28px 80px rgba(15,23,42,.34);padding:16px}.mx-inventory-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.mx-inventory-detail-eyebrow{display:block;font-size:9px;font-weight:950;letter-spacing:.08em;color:#64748b}.mx-inventory-detail-head h3{margin:3px 0 0!important;font-size:20px!important;color:#0f2745}.mx-inventory-detail-close{width:38px;min-width:38px;height:38px;min-height:38px;padding:0;border-radius:11px;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;box-shadow:none;font-size:25px;line-height:1;display:flex;align-items:center;justify-content:center}.mx-inventory-detail-close:hover{transform:none;background:#e0e7ff}.mx-inventory-detail-key{margin-top:12px;padding:9px 11px;border-radius:11px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:15px;font-weight:950;letter-spacing:.02em}.mx-inventory-detail-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.mx-inventory-form-tag{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;border:1px solid #cbd5e1;background:#f8fafc;color:#334155;font-size:10px;font-weight:950}.mx-inventory-form-tag.tableta,.mx-inventory-form-tag.comprimido{background:#eef2ff;border-color:#c7d2fe;color:#3730a3}.mx-inventory-form-tag.frasco,.mx-inventory-form-tag.ampula{background:#ecfeff;border-color:#a5f3fc;color:#155e75}.mx-inventory-form-tag.inyectable{background:#f0fdf4;border-color:#bbf7d0;color:#166534}.mx-inventory-detail-section{margin-top:12px;padding:12px;border-radius:13px;border:1px solid #dbe5f1;background:#f8fbff}.mx-inventory-detail-section>span{display:block;font-size:9px;font-weight:950;color:#64748b;letter-spacing:.05em}.mx-inventory-detail-section p{margin:6px 0 0;color:#0f172a;font-size:14px;line-height:1.48;font-weight:750;overflow-wrap:anywhere}.mx-inventory-detail-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}.mx-inventory-detail-available{display:inline-flex;padding:7px 10px;border-radius:999px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:11px;font-weight:950}.mx-inventory-detail-footer small{color:#64748b;font-size:9px;font-weight:800}
-@media(max-width:600px){.mx-inventory-detail-overlay{align-items:flex-end;padding:8px}.mx-inventory-detail-card{width:100%;max-height:82vh;border-radius:18px 18px 10px 10px;padding:13px}.mx-inventory-detail-head h3{font-size:18px!important}.mx-inventory-detail-close{width:36px;min-width:36px;height:36px;min-height:36px}.mx-inventory-detail-key{font-size:13px}.mx-inventory-detail-section p{font-size:15px;line-height:1.5}.mx-inventory-form-tag{font-size:10px;padding:6px 8px}.mx-inventory-detail-footer small{display:none}}
-</style>
+
+
 <script id="mx-solo-existencias-runtime-v1023">
 (function(){
   'use strict';
@@ -1193,54 +1292,7 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
 </script>
 
 
-<style id="mx-expiry-module-v100">
-#tabPatients{display:none!important}
-.viewer-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:6px;margin-top:8px}
-.viewer-tab{min-width:0;padding:9px 8px;font-size:11px;line-height:1.15;white-space:normal;box-shadow:none}
-.expiry-card{margin-top:10px;padding:11px}
-.expiry-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.expiry-heading h3{margin:0!important;font-size:15px}
-.expiry-heading p{margin:3px 0 0;color:#64748b;font-size:10px;line-height:1.25}
-.expiry-range{flex:0 0 auto;padding:5px 8px;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:9px;font-weight:950}
-.expiry-search{margin-top:9px}
-.expiry-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}
-.expiry-kpi{min-width:0;padding:7px 8px;border:1px solid #dbe5f1;border-radius:11px;background:#f8fbff}
-.expiry-kpi span{display:block;color:#64748b;font-size:8px;font-weight:900;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.expiry-kpi b{display:block;margin-top:2px;color:#0f3f75;font-size:17px;line-height:1}
-.expiry-status{margin:8px 0 6px;color:#64748b;font-size:9px;font-weight:800}
-.expiry-results{display:grid;gap:6px;max-height:66vh;overflow:auto;padding-right:2px}
-.expiry-item{border:1px solid #dbe5f1;border-left:4px solid #f59e0b;border-radius:12px;background:#fff;padding:8px 9px;box-shadow:0 5px 14px rgba(15,23,42,.05)}
-.expiry-item.urgent{border-left-color:#dc2626;background:#fffafa}
-.expiry-item.soon{border-left-color:#ea580c}
-.expiry-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}
-.expiry-key{font-size:10px;font-weight:950;color:#1e40af;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.expiry-name{margin-top:2px;color:#1e293b;font-size:10px;font-weight:800;line-height:1.2;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
-.expiry-qty{min-width:54px;text-align:center;padding:5px 7px;border-radius:10px;background:#ecfdf5;border:1px solid #bbf7d0;color:#166534}
-.expiry-qty b{display:block;font-size:17px;line-height:1}
-.expiry-qty small{display:block;margin-top:2px;font-size:7px;font-weight:950}
-.expiry-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.expiry-meta span{padding:3px 6px;border-radius:999px;background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;font-size:8px;font-weight:850}
-.expiry-meta .date{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
-.expiry-item.urgent .expiry-meta .date{background:#fef2f2;border-color:#fecaca;color:#991b1b}
-@media(min-width:761px){
-  .viewer-tabs{max-width:780px}
-  .viewer-tab{font-size:12px}
-  .expiry-card{padding:14px}
-  .expiry-results{grid-template-columns:repeat(2,minmax(0,1fr));max-height:63vh}
-  .expiry-name{font-size:11px}
-}
-@media(max-width:430px){
-  .viewer-tabs{position:sticky;top:56px;z-index:18;margin:0 0 5px;padding:5px}
-  .viewer-tab{padding:7px 3px;font-size:8.5px;min-height:34px}
-  .expiry-card{margin-top:5px;padding:8px}
-  .expiry-heading p{display:none}
-  .expiry-search{margin-top:7px}
-  .expiry-results{max-height:68vh}
-}
-.mx-medical-tab-count{display:inline-flex;min-width:16px;height:16px;align-items:center;justify-content:center;margin-left:3px;padding:0 4px;border-radius:999px;background:#dc2626;color:#fff;font-size:8px;font-weight:950;vertical-align:1px}.mx-medical-validation-card{margin-top:10px;padding:11px}.mx-medical-validation-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.mx-medical-validation-head h3{margin:0;font-size:15px}.mx-medical-validation-head p{margin:3px 0 0;color:#64748b;font-size:10px;line-height:1.3}.mx-medical-doctor-button{flex:0 0 auto;padding:7px 9px;border-radius:10px;font-size:9px}.mx-medical-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:9px}.mx-medical-kpis>div{min-width:0;padding:7px 8px;border:1px solid #dbe5f1;border-radius:11px;background:#f8fbff}.mx-medical-kpis span{display:block;color:#64748b;font-size:8px;font-weight:900;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-medical-kpis b{display:block;margin-top:2px;color:#0f3f75;font-size:17px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-medical-kpis #mxMedicalDoctorShort{font-size:10px;padding-top:4px}.mx-medical-validation-status{margin:8px 0 6px;color:#64748b;font-size:9px;font-weight:800}.mx-medical-order-list{display:grid;gap:7px;max-height:67vh;overflow:auto;padding-right:2px}.mx-medical-order{width:100%;text-align:left;background:#fff;color:#0f172a;border:1px solid #dbe5f1;border-left:4px solid #f59e0b;box-shadow:0 5px 14px rgba(15,23,42,.05);padding:9px 10px;border-radius:12px}.mx-medical-order.approved{border-left-color:#16a34a}.mx-medical-order:hover{transform:none;filter:none;background:#f8fbff}.mx-medical-order-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.mx-medical-folio{font-size:10px;font-weight:950;color:#1e40af}.mx-medical-type{margin-top:2px;font-size:10px;font-weight:900;color:#1e293b}.mx-medical-summary{margin-top:5px;color:#475569;font-size:9px;line-height:1.35}.mx-medical-state{flex:0 0 auto;padding:4px 7px;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:8px;font-weight:950}.mx-medical-state.approved{background:#f0fdf4;border-color:#bbf7d0;color:#166534}.mx-medical-order.informative{border-left-color:#2563eb}.mx-medical-state.informative{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}.mx-medical-info-note{margin-top:10px;padding:8px 9px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:9px;font-weight:850}.mx-medical-overlay{position:fixed;inset:0;z-index:2147482500;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(3,15,31,.68);backdrop-filter:blur(4px)}.mx-medical-overlay.mx-hidden{display:none!important}.mx-medical-dialog{width:min(720px,100%);max-height:90vh;overflow:auto;background:#fff;border:1px solid #dbe5f1;border-radius:18px;box-shadow:0 28px 70px rgba(2,18,40,.32);padding:14px}.mx-medical-doctor-dialog{width:min(720px,100%)}.mx-medical-dialog-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}.mx-medical-dialog-head h3{margin:0;font-size:17px}.mx-medical-dialog-head p{margin:3px 0 0;color:#64748b;font-size:10px}.mx-medical-x{width:34px;height:34px;padding:0;border-radius:10px;background:#eef2f7;color:#334155;box-shadow:none;font-size:20px}.mx-medical-dialog label{font-size:10px}.mx-medical-doctor-search{position:relative;margin-top:4px}.mx-medical-doctor-search input{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#0f172a;padding:12px 13px;font:inherit;font-size:15px;font-weight:750;outline:none}.mx-medical-doctor-search input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}.mx-medical-doctor-results{position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:20;max-height:360px;overflow:auto;padding:5px;background:#fff;border:1px solid #cbd5e1;border-radius:12px;box-shadow:0 16px 34px rgba(15,23,42,.16)}.mx-medical-doctor-results.mx-hidden{display:none!important}.mx-medical-doctor-option{display:block;width:100%;padding:12px 12px;border:0;border-radius:9px;background:#fff;color:#0f172a;text-align:left;box-shadow:none}.mx-medical-doctor-option:hover,.mx-medical-doctor-option.active{background:#eff6ff;transform:none;filter:none}.mx-medical-doctor-option b{display:block;font-size:13px}.mx-medical-doctor-option small{display:block;margin-top:3px;color:#64748b;font-size:10px}.mx-medical-help{margin-top:7px;color:#64748b;font-size:9px;line-height:1.35}.mx-medical-dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:13px}.mx-medical-order-actions{align-items:stretch}.mx-medical-order-actions #mxMedicalApproveButton{flex:1 1 auto}.mx-medical-close-bottom{flex:0 0 auto!important;width:auto!important;min-width:72px;padding:8px 12px!important;background:#eef2f7!important;color:#334155!important;border:1px solid #cbd5e1!important;box-shadow:none!important;font-weight:900!important}.mx-medical-close-bottom:hover{background:#e2e8f0!important;transform:none!important;filter:none!important}.mx-medical-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:10px}.mx-medical-detail-grid>div{min-width:0;padding:6px 7px;border:1px solid #dbe5f1;border-radius:9px;background:#f8fbff}.mx-medical-detail-grid span{display:block;color:#64748b;font-size:7.5px;font-weight:900;text-transform:uppercase}.mx-medical-detail-grid b{display:block;margin-top:2px;font-size:9px;color:#163b5c;overflow-wrap:anywhere;line-height:1.2}.mx-medical-items{display:grid;gap:6px}.mx-medical-item{padding:8px 9px;border:1px solid #dbe5f1;border-radius:11px;background:#fff}.mx-medical-item b{display:block;font-size:10px;color:#1e40af}.mx-medical-item span{display:block;margin-top:2px;font-size:9px;color:#334155;line-height:1.3}.mx-medical-item small{display:block;margin-top:3px;font-size:8px;color:#64748b}.mx-medical-request-qty{color:#1e40af;font-weight:950;font-size:9px}.mx-medical-approved-note{margin-top:10px;padding:8px 9px;border-radius:10px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;font-size:9px;font-weight:850}.mx-medical-dialog-actions button[disabled]{opacity:.62;cursor:default}.mx-medical-dialog-actions button[disabled]:hover{transform:none;filter:none}
-@media(min-width:761px){.mx-medical-order-list{grid-template-columns:repeat(2,minmax(0,1fr));max-height:63vh}.mx-medical-validation-card{padding:14px}}
-@media(max-width:430px){.mx-medical-validation-card{margin-top:5px;padding:8px}.mx-medical-validation-head p{display:none}.mx-medical-doctor-button{max-width:42%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-medical-order-list{max-height:69vh}.mx-medical-overlay{align-items:flex-end;padding:7px}.mx-medical-order-dialog{max-height:92vh;border-radius:17px 17px 9px 9px;padding:11px}.mx-medical-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.mx-medical-detail-grid>div{padding:6px 7px}.mx-medical-detail-grid b{font-size:9px}.mx-medical-dialog-actions button{width:100%}.mx-medical-order-actions{display:flex;flex-direction:row;gap:7px;position:sticky;bottom:0;z-index:5;padding-top:7px;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff 24%)}.mx-medical-order-actions #mxMedicalApproveButton{width:auto;min-width:0;flex:1 1 auto}.mx-medical-order-actions .mx-medical-close-bottom{width:auto!important;min-width:68px!important;flex:0 0 auto!important;padding:7px 10px!important;font-size:11px!important}.mx-medical-doctor-dialog{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;border:0;border-radius:0;padding:calc(14px + env(safe-area-inset-top)) 14px calc(12px + env(safe-area-inset-bottom));box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}.mx-medical-doctor-dialog .mx-medical-dialog-head{flex:0 0 auto;margin-bottom:12px}.mx-medical-doctor-dialog .mx-medical-dialog-head h3{font-size:22px}.mx-medical-doctor-dialog .mx-medical-dialog-head p{display:block;font-size:12px;line-height:1.35}.mx-medical-doctor-dialog>label{font-size:12px;margin-top:4px}.mx-medical-doctor-search{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;margin-top:7px}.mx-medical-doctor-search input{flex:0 0 auto;padding:14px 14px;font-size:17px;border-radius:14px}.mx-medical-doctor-results{position:static;left:auto;right:auto;top:auto;z-index:auto;flex:1 1 auto;min-height:0;max-height:none;margin-top:8px;overflow:auto;border-radius:14px;box-shadow:none}.mx-medical-doctor-option{padding:14px 12px;min-height:58px}.mx-medical-doctor-option b{font-size:14px}.mx-medical-doctor-option small{font-size:11px}.mx-medical-doctor-dialog .mx-medical-help{flex:0 0 auto;font-size:10px;margin-top:8px}.mx-medical-doctor-dialog .mx-medical-dialog-actions{flex:0 0 auto;margin-top:8px}.mx-medical-doctor-dialog .mx-medical-dialog-actions button{min-height:44px;font-size:13px}}
-</style>
+
 <script id="mx-expiry-module-runtime-v101">
 (function(){
   'use strict';
@@ -1461,10 +1513,7 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
 })();
 </script>
 
-<style id="mx-connection-diagnostic-style-v104">
-#mxConnectionDiagnostic{position:fixed;right:8px;bottom:4px;z-index:9997;max-width:72vw;padding:3px 7px;border-radius:8px;background:rgba(255,255,255,.86);border:1px solid rgba(148,163,184,.45);box-shadow:0 2px 8px rgba(15,23,42,.08);font:600 9px/1.2 'Segoe UI',Arial,sans-serif;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;backdrop-filter:blur(3px)}
-@media(max-width:640px){#mxConnectionDiagnostic{font-size:8px;right:4px;bottom:3px;max-width:88vw}}
-</style>
+
 
 <script id="mx-connection-diagnostic-v104">
 (function(){
@@ -1505,55 +1554,42 @@ function applyFilters(){filtered=selectedKey?raw.filter(x=>String(x.patientKey||
 })();
 </script>
 
-<style id="mx-ecosystem-live-id-v1010-style">
-#mxConnectionDiagnostic{display:none!important}
-#mxEcosystemLiveId{position:fixed;left:10px;right:auto;bottom:max(8px,env(safe-area-inset-bottom));z-index:9990;max-width:min(92vw,820px);padding:5px 9px;border:1px solid #cbd5e1;border-radius:10px;background:rgba(255,255,255,.96);box-shadow:0 4px 14px rgba(15,23,42,.12);font:700 9px/1.25 system-ui;color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#mxEcosystemLiveId b{color:#0f4c81}
-.mx-connection-gate-info{margin:9px 0 2px;padding:8px 10px;border:1px solid #bfdbfe;border-radius:11px;background:#eff6ff;color:#1e3a5f;font:700 10px/1.35 system-ui;word-break:break-all}
-.mx-connection-gate-info b{color:#0b4f7d}
-@media(max-width:600px){#mxEcosystemLiveId{left:8px;right:8px;max-width:none;font-size:8px}.mx-connection-gate-info{font-size:9px;padding:7px 8px}}
-</style>
 
-<style id="mx-fixed-principal-binding-v100-style">
-#mxPrincipalBindingGate{position:fixed;inset:0;z-index:1900;background:rgba(5,24,42,.82);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
-#mxPrincipalBindingGate .mx-pb-card{width:min(760px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.45);padding:18px}
-#mxPrincipalBindingGate h2{margin:0;color:#103f66;font-size:21px}#mxPrincipalBindingGate p{color:#64748b;font-size:12px;line-height:1.45}
-#mxPrincipalBindingGate .mx-pb-list{display:grid;gap:9px;margin-top:12px}.mx-pb-system{border:1px solid #cfe0ee;border-radius:14px;padding:12px;background:#f8fbfe;cursor:pointer;text-align:left;color:#17324b}
-.mx-pb-system:hover{border-color:#4f7ee8;box-shadow:0 7px 20px rgba(37,99,235,.12)}.mx-pb-system b{display:block;color:#103f66;font-size:14px}.mx-pb-system small{display:block;margin-top:4px;color:#64748b;overflow-wrap:anywhere}
-.mx-pb-current{display:inline-block;margin-top:7px;padding:4px 8px;border-radius:999px;background:#e0f2fe;color:#075985;font-size:10px;font-weight:900}
-</style>
 <script id="mx-fixed-principal-binding-v100">
 (function(){
-'use strict';if(window.__mxFixedPrincipalBindingStrictV2)return;window.__mxFixedPrincipalBindingStrictV2=true;
-const CONTROL_DB='https://ecosistema-macroxel-default-rtdb.firebaseio.com',APP='EXISTENCIAS',KEY='mx_principal_binding_v2_existencias',ONLINE_MS=95000;
+'use strict';
+/* MACROXEL v1.0.00 · vinculación estable v3
+   - Nunca recorre otros Sistemas Principales.
+   - Migra SOLO el ID de asociaciones previas; nunca adopta su URL antigua como autoridad.
+   - La URL vigente siempre se resuelve por /ecosystem_connection/<ID exacto>.
+   - No emite mx-viewer-config-changed durante comprobaciones periódicas: evita cerrar módulos/mostrar activación.
+*/
+if(window.__mxFixedPrincipalBindingStableV3)return;window.__mxFixedPrincipalBindingStableV3=true;
+const CONTROL_DB='https://ecosistema-macroxel-default-rtdb.firebaseio.com',APP='EXISTENCIAS',KEY='mx_principal_binding_v2_existencias',LEGACY_KEY='mx_principal_binding_v1',ONLINE_MS=95000;
 const txt=v=>String(v==null?'':v).trim(),cleanDb=v=>txt(v).replace(/\.json\/?$/i,'').replace(/\/+$/,''),cleanId=v=>txt(v).toUpperCase().replace(/[.#$\[\]\/]/g,'_');
+const validId=v=>{const id=cleanId(v);return /^MACROXEL-[A-Z0-9_-]{4,}$/.test(id)?id:''};
 function rest(db,path){const b=cleanDb(db);if(!b)return'';const p=String(path||'').startsWith('/')?String(path):'/'+String(path||'');return b+p+(p.endsWith('.json')?'':'.json')}
 async function get(db,path,timeout=6500){const u=rest(db,path);if(!u)return null;const c=new AbortController(),t=setTimeout(()=>c.abort(),timeout);try{const r=await fetch(u+'?mx='+Date.now(),{cache:'no-store',signal:c.signal});if(!r.ok)return null;return await r.json().catch(()=>null)}catch(_e){return null}finally{clearTimeout(t)}}
-function exactRecord(rec,want=''){if(!rec||typeof rec!=='object')return null;const id=cleanId(rec.unitId||rec.activationId||rec.storeId||rec.branch),db=cleanDb(rec.firebaseUrl||rec.currentUrl||rec.db||rec.url);if(!id||!db||(want&&id!==cleanId(want)))return null;return{systemId:id,branch:id,db,firebaseUrl:db,unitName:txt(rec.unitName||rec.unidad||rec.principalName||rec.seatLabel||''),updatedAt:txt(rec.updatedAt||rec.publishedAt||'')}}
-function readBinding(){try{const b=JSON.parse(localStorage.getItem(KEY)||'null');const id=cleanId(b?.systemId||b?.branch);return id?{...b,systemId:id,branch:id,db:cleanDb(b.db||b.firebaseUrl)}:null}catch(_e){return null}}
-function queryId(){try{const u=new URL(location.href),id=cleanId(u.searchParams.get('mxSystem')||u.searchParams.get('mxPrincipal')||u.searchParams.get('mxSystemId'));if(id){u.searchParams.delete('mxSystem');u.searchParams.delete('mxPrincipal');u.searchParams.delete('mxSystemId');history.replaceState(null,'',u.pathname+(u.search?u.search:'')+u.hash)}return id}catch(_e){return''}}
-function migrationId(){const q=queryId();if(q)return q;const b=readBinding();return b?.systemId||''}
-
-function sanitizeOwnConfig(id=''){try{const r=JSON.parse(localStorage.getItem('mx_viewer_existencias_cfg_v104')||'null')||{};const next={...r,db:'',firebaseUrl:'',currentUrl:'',url:'',branch:id||cleanId(r.branch||r.unitId||'')};localStorage.setItem('mx_viewer_existencias_cfg_v104',JSON.stringify(next));}catch(_e){}}
-
-let systemId=migrationId();sanitizeOwnConfig(systemId);try{window.mxViewerSaveCfg?.({db:'',branch:systemId||''},false)}catch(_e){}
-function persist(rec,source='REGISTRO_EXACTO'){const r=exactRecord(rec,systemId);if(!r)return null;systemId=r.systemId;const next={schemaVersion:2,mode:'STRICT_FIXED_SYSTEM_ID',appCode:APP,systemId:r.systemId,branch:r.systemId,db:r.db,firebaseUrl:r.db,unitName:r.unitName,boundAt:readBinding()?.boundAt||new Date().toISOString(),updatedAt:new Date().toISOString(),source};try{localStorage.setItem(KEY,JSON.stringify(next))}catch(_e){}try{window.mxViewerSaveCfg?.({db:r.db,branch:r.systemId,unitName:r.unitName},false)}catch(_e){}try{window.dispatchEvent(new CustomEvent('mx-viewer-config-changed',{detail:{strictBinding:true,systemId:r.systemId,source}}))}catch(_e){}return next}
-async function resolve(force=false){if(!systemId)return null;const rec=exactRecord(await get(CONTROL_DB,'/ecosystem_connection/'+encodeURIComponent(systemId)),systemId);if(!rec){try{window.mxViewerSaveCfg?.({db:'',branch:systemId},false)}catch(_e){}return null}return persist(rec,force?'ACTUALIZACION_EXACTA':'REGISTRO_EXACTO')}
-async function resolveForActivation(){const b=await resolve(true);return b?{branch:b.systemId,db:b.db,unitName:b.unitName}:{branch:systemId,db:'',unitName:''}}
-async function connectionState(){const b=await resolve(false);if(!b||!b.db||navigator.onLine===false)return{connected:false,principalOnline:false,firebase:false,systemId:systemId||'',reason:'Sistema Principal asociado sin conexión'};const [probe,pres]=await Promise.all([get(b.db,'/ecosystem_connection/'+encodeURIComponent(b.systemId),5000),get(CONTROL_DB,'/inventory_heartbeat/principal_presence/'+encodeURIComponent(b.systemId),5000)]);const firebase=!!exactRecord(probe,b.systemId),last=Number(pres?.lastSeenMs)||Date.parse(pres?.lastSeenAt||0)||0,paused=pres?.connectionPaused===true||pres?.remoteDisconnected===true,online=!!last&&Date.now()-last<ONLINE_MS&&!paused;return{connected:firebase&&online,principalOnline:online,firebase,paused,systemId:b.systemId,lastSeenAt:pres?.lastSeenAt||'',reason:firebase&&online?'Conectado':paused?'Sistema Principal desconectado':'Sin señal del Sistema Principal asociado'}}
-function gate(){
- if(systemId)return;
- const show=()=>{
-  if(document.getElementById('mxStrictBindingGate'))return;
-  const el=document.createElement('div');el.id='mxStrictBindingGate';
-  el.innerHTML='<div class="mx-pb-card"><h2>Vincular a Sistema Principal</h2><p>Este visor no buscará otras instalaciones. Escribe el <b>ID de activación</b> que aparece en Configuración del Sistema Principal. Se guardará solo para este visor.</p><input id="mxStrictSystemId" autocomplete="off" placeholder="MACROXEL-HPS-..." style="width:100%;margin:10px 0;padding:11px;border:1px solid #cbd5e1;border-radius:10px"><button id="mxStrictBindBtn" type="button" style="width:100%;padding:11px;border:0;border-radius:10px;background:#1d4ed8;color:white;font-weight:800">Vincular este visor</button><div id="mxStrictBindMsg" style="margin-top:8px;font-size:12px"></div></div>';
-  document.body.appendChild(el);
-  el.querySelector('#mxStrictBindBtn').onclick=async()=>{const id=cleanId(el.querySelector('#mxStrictSystemId').value),msg=el.querySelector('#mxStrictBindMsg');if(!id){msg.textContent='Captura el ID del Sistema Principal.';return}msg.textContent='Verificando asociación…';systemId=id;sanitizeOwnConfig(id);try{window.mxViewerSaveCfg?.({db:'',branch:id},false)}catch(_e){}const b=await resolve(true);if(!b){systemId='';msg.textContent='No se encontró ese Sistema Principal en el Centro de control. Verifica el ID y que el sistema esté encendido.';return}msg.textContent='Vinculado correctamente.';setTimeout(()=>location.reload(),250)};
- };
- document.readyState==='loading'?document.addEventListener('DOMContentLoaded',show,{once:true}):show();
-}
-window.mxFixedPrincipalBinding={version:'2.0.0',mode:'STRICT_FIXED_SYSTEM_ID',appCode:APP,get systemId(){return systemId},read:readBinding,resolve,resolveForActivation,connectionState};
-gate();if(systemId)setTimeout(()=>resolve(true),20);window.addEventListener('online',()=>systemId&&setTimeout(()=>resolve(true),150));
+function exactRecord(rec,want=''){if(!rec||typeof rec!=='object')return null;const id=validId(rec.unitId||rec.activationId||rec.storeId||rec.branch),db=cleanDb(rec.firebaseUrl||rec.currentUrl||rec.db||rec.url);if(!id||!db||(want&&id!==validId(want)))return null;return{systemId:id,branch:id,db,firebaseUrl:db,unitName:txt(rec.unitName||rec.unidad||rec.principalName||rec.seatLabel||''),updatedAt:txt(rec.updatedAt||rec.publishedAt||'')}}
+function parseKey(k){try{const b=JSON.parse(localStorage.getItem(k)||'null');if(!b||typeof b!=='object')return null;const id=validId(b.systemId||b.branch||b.unitId);return id?{...b,systemId:id,branch:id,db:cleanDb(b.db||b.firebaseUrl)}:null}catch(_e){return null}}
+function queryId(){try{const u=new URL(location.href),id=validId(u.searchParams.get('mxSystem')||u.searchParams.get('mxPrincipal')||u.searchParams.get('mxSystemId'));if(id){u.searchParams.delete('mxSystem');u.searchParams.delete('mxPrincipal');u.searchParams.delete('mxSystemId');history.replaceState(null,'',u.pathname+(u.search?u.search:'')+u.hash)}return id}catch(_e){return''}}
+function ownBranchId(){try{const c=window.mxViewerGetCfg?.()||{};return validId(c.branch||c.unitId)}catch(_e){return''}}
+function ownStoredId(){try{const r=JSON.parse(localStorage.getItem('mx_viewer_existencias_cfg_v104')||'null')||{};return validId(r.branch||r.unitId)}catch(_e){return''}}
+function candidate(){const q=queryId();if(q)return{id:q,source:'URL_SISTEMA_PRINCIPAL'};const cur=parseKey(KEY);if(cur?.systemId)return{id:cur.systemId,source:'VINCULO_ACTUAL',cached:cur};const legacy=parseKey(LEGACY_KEY);if(legacy?.systemId)return{id:legacy.systemId,source:'MIGRACION_ID_V1'};const own=ownBranchId()||ownStoredId();if(own)return{id:own,source:'RAMA_LOCAL'};return{id:'',source:'SIN_VINCULO'}}
+function syncOwnLocal(id,db,unitName=''){try{const k='mx_viewer_existencias_cfg_v104',r=JSON.parse(localStorage.getItem(k)||'null')||{},branch=cleanId(id);if(!branch)return;const next={...r,branch};if(db)next.db=cleanDb(db);else if(cleanId(r.branch||r.unitId||'')!==branch)next.db='';if(unitName)next.unitName=txt(unitName);delete next.firebaseUrl;delete next.currentUrl;delete next.url;localStorage.setItem(k,JSON.stringify(next));}catch(_e){}}
+let first=candidate(),systemId=first.id,cached=(first.cached&&first.cached.systemId===systemId)?first.cached:null,lastAppliedCore='';
+if(systemId&&cached?.db)syncOwnLocal(systemId,cached.db,cached.unitName||'');
+else if(systemId)syncOwnLocal(systemId,'','');
+function readBinding(){const b=parseKey(KEY);return b&&b.systemId===systemId?b:null}
+function coreOf(x){return JSON.stringify([validId(x?.systemId||x?.branch),cleanDb(x?.db||x?.firebaseUrl),txt(x?.unitName)])}
+function applyViewer(rec){if(!rec||!rec.systemId||!rec.db)return;syncOwnLocal(rec.systemId,rec.db,rec.unitName);try{const c=window.mxViewerGetCfg?.()||{},same=validId(c.branch||c.unitId)===rec.systemId&&cleanDb(c.db||c.firebaseUrl)===rec.db&&txt(c.unitName||'')===txt(rec.unitName||'');if(!same)window.mxViewerSaveCfg?.({db:rec.db,branch:rec.systemId,unitName:rec.unitName},false)}catch(_e){}}
+function persist(rec,source='REGISTRO_EXACTO'){const r=exactRecord(rec,systemId);if(!r)return null;systemId=r.systemId;const prev=readBinding(),core=coreOf(r),changed=!prev||coreOf(prev)!==core;const next=changed?{schemaVersion:3,mode:'STRICT_FIXED_SYSTEM_ID',appCode:APP,systemId:r.systemId,branch:r.systemId,db:r.db,firebaseUrl:r.db,unitName:r.unitName,boundAt:prev?.boundAt||new Date().toISOString(),updatedAt:new Date().toISOString(),source}:prev;try{if(changed)localStorage.setItem(KEY,JSON.stringify(next));if(first.source==='MIGRACION_ID_V1'&&changed){/* conserva el legado sin usar su URL; la clave v2/v3 ya manda para este visor */}}catch(_e){}applyViewer(r);if(changed){lastAppliedCore=core;try{window.dispatchEvent(new CustomEvent('mx-viewer-binding-updated',{detail:{systemId:r.systemId,db:r.db,unitName:r.unitName,source}}))}catch(_e){}}return next}
+async function resolve(force=false){if(!systemId)return null;const rec=exactRecord(await get(CONTROL_DB,'/ecosystem_connection/'+encodeURIComponent(systemId)),systemId);if(!rec)return readBinding();return persist(rec,force?'ACTUALIZACION_EXACTA':'REGISTRO_EXACTO')}
+async function resolveForActivation(){const b=await resolve(true)||readBinding();return b?{branch:b.systemId,db:cleanDb(b.db||b.firebaseUrl),unitName:b.unitName||''}:{branch:systemId,db:'',unitName:''}}
+async function connectionState(){const b=await resolve(false)||readBinding();if(!b||!cleanDb(b.db||b.firebaseUrl)||navigator.onLine===false)return{connected:false,principalOnline:false,firebase:false,systemId:systemId||'',reason:systemId?'Sistema Principal asociado sin conexión':'Visor sin asociación al Sistema Principal'};const db=cleanDb(b.db||b.firebaseUrl),[probe,pres]=await Promise.all([get(db,'/ecosystem_connection/'+encodeURIComponent(systemId),5000),get(CONTROL_DB,'/inventory_heartbeat/principal_presence/'+encodeURIComponent(systemId),5000)]);const firebase=!!exactRecord(probe,systemId),last=Number(pres?.lastSeenMs)||Date.parse(pres?.lastSeenAt||0)||0,paused=pres?.connectionPaused===true||pres?.remoteDisconnected===true,online=!!last&&Date.now()-last<ONLINE_MS&&!paused;return{connected:firebase&&online,principalOnline:online,firebase,paused,systemId,lastSeenAt:pres?.lastSeenAt||'',reason:firebase&&online?'Conectado':paused?'Sistema Principal desconectado':'Sin señal del Sistema Principal asociado'}}
+function showUnboundMessage(){if(systemId)return;const run=()=>{for(const id of ['activationConnection','mxVaMessage','actMsg','activationMsg']){const e=document.getElementById(id);if(e&&!txt(e.textContent))e.textContent='Abre este visor desde el Sistema Principal una vez para asociarlo a esta instalación.'}};document.readyState==='loading'?document.addEventListener('DOMContentLoaded',run,{once:true}):run()}
+window.mxFixedPrincipalBinding={version:'3.0.0',mode:'STRICT_FIXED_SYSTEM_ID',appCode:APP,get systemId(){return systemId},read:readBinding,resolve,resolveForActivation,connectionState};
+showUnboundMessage();if(systemId){setTimeout(()=>resolve(true),0);setTimeout(()=>{const b=readBinding();if(b)applyViewer(b)},80)}window.addEventListener('online',()=>systemId&&setTimeout(()=>resolve(true),150));
 })();
 </script>
 
@@ -1570,19 +1606,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 
 
-<style id="mx-logo-connection-info-v100-style">
-#mxEcosystemLiveId,#liveId.footer-id,.footer-id,#mxConnectionDiagnostic{display:none!important}
-.mx-logo-info-trigger{cursor:pointer!important;touch-action:manipulation;outline:none}
-.mx-logo-info-trigger:focus-visible{box-shadow:0 0 0 3px rgba(37,99,235,.35)!important;border-radius:10px}
-#mxLogoInfoOverlay{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(8,22,43,.72);backdrop-filter:blur(5px);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-#mxLogoInfoOverlay.mx-show{display:flex}
-#mxLogoInfoCard{width:min(620px,100%);max-height:min(88vh,760px);overflow:auto;background:#fff;border:1px solid #d8e3f0;border-radius:20px;box-shadow:0 28px 70px rgba(2,18,40,.34);color:#102a43}
-.mx-li-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;background:linear-gradient(135deg,#08365f,#0f6fa4);color:#fff;border-radius:19px 19px 0 0}
-.mx-li-head h2{margin:0;font-size:18px;line-height:1.2}.mx-li-head small{display:block;margin-top:3px;font-size:11px;opacity:.85}.mx-li-close{width:36px;height:36px;border:0;border-radius:11px;background:rgba(255,255,255,.17);color:#fff;font-size:22px;font-weight:900;cursor:pointer}
-.mx-li-body{padding:16px 18px 19px}.mx-li-section{margin:0 0 14px}.mx-li-section:last-child{margin-bottom:0}.mx-li-title{margin:0 0 8px;font-size:11px;font-weight:950;letter-spacing:.05em;text-transform:uppercase;color:#4b6b88}
-.mx-li-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.mx-li-row{min-width:0;padding:10px 11px;border:1px solid #dbe7f2;border-radius:12px;background:#f8fbfe}.mx-li-row.mx-wide{grid-column:1/-1}.mx-li-row span{display:block;margin-bottom:3px;font-size:9px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#647b91}.mx-li-row b{display:block;font-size:12px;line-height:1.35;color:#102f4c;overflow-wrap:anywhere;word-break:break-word}.mx-li-state{display:inline-flex!important;width:auto!important;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#dcfce7;color:#166534!important}.mx-li-state.mx-off{background:#fee2e2;color:#991b1b!important}.mx-li-designer{margin-top:11px;padding:10px 12px;border-radius:11px;background:#f8fafc;border:1px solid #dbe5f1;color:#123e72;text-align:center;font-size:11px;line-height:1.35}.mx-li-foot{margin-top:11px;padding:8px 10px;border-radius:10px;background:#eff6ff;color:#315776;font-size:10px;line-height:1.4}
-@media(max-width:540px){#mxLogoInfoOverlay{padding:9px;align-items:flex-end}#mxLogoInfoCard{max-height:90vh;border-radius:18px 18px 10px 10px}.mx-li-head{padding:13px 14px;border-radius:17px 17px 0 0}.mx-li-head h2{font-size:16px}.mx-li-body{padding:13px 14px 16px}.mx-li-grid{grid-template-columns:1fr}.mx-li-row.mx-wide{grid-column:auto}.mx-li-row{padding:9px 10px}.mx-li-row b{font-size:11px}}
-</style>
+
 <script id="mx-shared-activation-profile-v100">
 (function(){
   'use strict';
@@ -1873,11 +1897,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-<style id="mx-pacientes-reactivado-v1025">
-#tabPatients{display:inline-flex!important;align-items:center;justify-content:center}
-.viewer-tabs{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-@media(max-width:760px){.viewer-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.viewer-tab{min-width:0;padding:7px 5px!important;font-size:9px!important}}
-</style>
+
 <script id="mx-pacientes-reactivado-runtime-v1025">
 (function(){
  'use strict';
@@ -1911,17 +1931,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 
 
-<style id="mx-visor-header-login-v1025">
-#firebaseStatus,#pillUpdated,.mx-viewer-license-badge{display:none!important}
-#mxLogoInfoOverlay{display:none!important;visibility:hidden!important}
-#mxCompactStatusV1025{flex:0 0 auto;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;padding:0!important;margin:0!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.30)!important;background:rgba(255,255,255,.12)!important;box-shadow:none!important;cursor:default!important;touch-action:manipulation!important}
-#mxCompactStatusV1025 .mx-cdot{width:10px;height:10px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.18);transition:.15s}
-#mxCompactStatusV1025.mx-ok .mx-cdot{background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}#mxCompactStatusV1025.mx-bad .mx-cdot{background:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.18)}
-#mxActivationLoginV1025{position:fixed;inset:0;z-index:2147483600;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(5,22,42,.76);backdrop-filter:blur(5px);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}#mxActivationLoginV1025.mx-show{display:flex}
-#mxActivationLoginV1025 .mx-login-card{width:min(590px,100%);max-height:88vh;overflow:auto;background:#fff;border:1px solid #d7e3ef;border-radius:19px;box-shadow:0 30px 80px rgba(0,0,0,.34);color:#102a43}#mxActivationLoginV1025 .mx-login-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:15px 17px;background:linear-gradient(135deg,#08365f,#0f6fa4);color:#fff;border-radius:18px 18px 0 0}#mxActivationLoginV1025 .mx-login-head h2{margin:0;font-size:17px;line-height:1.2}#mxActivationLoginV1025 .mx-login-head small{display:block;margin-top:3px;font-size:10px;opacity:.85}#mxActivationLoginV1025 .mx-login-x{width:36px;height:36px;min-width:36px;padding:0;border:0;border-radius:10px;background:rgba(255,255,255,.17);color:#fff;font-size:25px;font-weight:900;line-height:1;cursor:pointer}
-#mxActivationLoginV1025 .mx-login-body{padding:15px 17px 17px}#mxActivationLoginV1025 .mx-login-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#mxActivationLoginV1025 .mx-login-row{min-width:0;border:1px solid #dbe7f2;border-radius:11px;background:#f8fbfe;padding:9px 10px}#mxActivationLoginV1025 .mx-login-row.mx-wide{grid-column:1/-1}#mxActivationLoginV1025 .mx-login-row span{display:block;margin-bottom:3px;color:#647b91;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}#mxActivationLoginV1025 .mx-login-row b{display:block;color:#123e62;font-size:12px;line-height:1.35;overflow-wrap:anywhere}#mxActivationLoginV1025 .mx-login-state.mx-ok{color:#166534}#mxActivationLoginV1025 .mx-login-state.mx-bad{color:#991b1b}#mxActivationLoginV1025 .mx-login-designer{margin-top:11px;padding:10px;border:1px solid #dbe5f1;border-radius:11px;background:#f8fafc;color:#123e72;text-align:center;font-size:11px;font-weight:900;line-height:1.4}#mxActivationLoginV1025 .mx-login-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}#mxActivationLoginV1025 .mx-login-actions button{border:0;border-radius:10px;padding:8px 11px;background:#e2e8f0;color:#334155;font-size:10px;font-weight:900;cursor:pointer}
-@media(max-width:560px){#mxCompactStatusV1025{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important}#mxActivationLoginV1025{align-items:flex-end;padding:8px}#mxActivationLoginV1025 .mx-login-card{max-height:91vh;border-radius:17px 17px 9px 9px}#mxActivationLoginV1025 .mx-login-grid{grid-template-columns:1fr}#mxActivationLoginV1025 .mx-login-row.mx-wide{grid-column:auto}}
-</style>
+
 <script id="mx-visor-header-login-runtime-v1025">
 (function(){
  'use strict';
@@ -1981,16 +1991,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-<style id="mx-auto-refresh-connectivity-v1029-style">
-/* v1.0.00 · la actualización es automática; no se muestran controles manuales de recarga. */
-button[data-mx-manual-refresh="1"]{display:none!important}
-#btnReload,#btnInventoryReload,#btnRefreshTransferAdjust,#btnPoReload,#mxIcReload,#mxIcHistoryRefresh,#mxNetRefresh,#vlaRefresh,#refreshBtn,#refreshHistory,#refreshConsumption,#refreshJustifiedValidation,#reload{display:none!important}
-button[data-ic-status]{display:none!important}
-/* Semáforo único: rojo por defecto; verde únicamente después de comprobar Firebase de trabajo. */
-#mxCompactStatusV1025 .mx-cdot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
-#mxCompactStatusV1025.mx-ok .mx-cdot{background:#22c55e!important;box-shadow:0 0 0 4px rgba(34,197,94,.20)!important}
-#mxCompactStatusV1025.mx-bad .mx-cdot{background:#ef4444!important;box-shadow:0 0 0 4px rgba(239,68,68,.18)!important}
-</style>
+
 <script id="mx-auto-refresh-connectivity-v1029">
 (function(){
 'use strict';if(window.__mxAutoRefreshConnectivityV1029)return;window.__mxAutoRefreshConnectivityV1029=true;
@@ -2115,14 +2116,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 </script>
 
-<style id="mx-activation-clean-v100">
-/* Activación compacta: solo datos personales visibles; el ID técnico se conserva internamente. */
-#mxIdentityHint{display:none!important}
-.mx-va-idline,.mx-va-device,#mxVaDevice,#mxVaCopy,#deviceIdBox,#deviceBox,#activationDevice,#viewerDevice{display:none!important}
-#mxViewerActivationGate .mx-va-card,#activationGate .gate-card,#mxVaGate .mx-va-card{max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain}
-#mxViewerActivationGate .mx-va-actions,#activationGate .gate-actions,#mxVaGate .mx-va-actions{position:sticky;bottom:0;z-index:8;background:#fff;padding-top:10px;padding-bottom:2px;border-top:1px solid rgba(203,213,225,.65)}
-#mxVaSubmit,#actSubmit,#sendActivation,#activationSubmit,#btnActivationSubmit{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;opacity:1!important}
-</style>
+
 <script id="mx-activation-clean-v100-js">
 (function(){'use strict';
  function clean(){
@@ -2141,11 +2135,5 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  new MutationObserver(clean).observe(document.documentElement,{subtree:true,childList:true});
 })();
 </script>
-
-
-<script id="mx-single-ui-boot-end-v100">
-(function(){'use strict';let done=false;function reveal(){if(done)return;done=true;const finish=()=>{document.documentElement.classList.remove('mx-ui-boot');const b=document.getElementById('mxUiBootV100');if(b)b.remove();};requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(finish,60)));}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reveal,{once:true});else reveal();setTimeout(reveal,2200);})();
-</script>
-
 </body>
 </html>
